@@ -32,7 +32,7 @@ def dir_os_db(wdir="db", os_system="WIN"):
 
 
 def add_fetched_tweets_loc():
-    db_csv = dir_os_db(wdir="db", os_system='OSX')
+    db_csv = dir_os_db(wdir="db", os_system='WIN')
 
     _tweets_with_locations = []
     _tweets_without_locations = []
@@ -100,7 +100,7 @@ def add_fetched_tweets_loc():
 
 
 def add_search_tweets_loc():
-    db_csv = dir_os_db(wdir="db_input", os_system='OSX')
+    db_csv = dir_os_db(wdir="db_input", os_system='WIN')
 
     _search_tweets_loc = []
 
