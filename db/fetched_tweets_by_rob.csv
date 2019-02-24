@@ -1,0 +1,11 @@
+id,created_at,text,lang,coordinates_type,coordinates_lat,coordinates_lon,place_id,place_name,place_country_code,retweet_count,favorite_count,_search_string,_search_loc_lat,_search_loc_lon,_search_loc_range,label,sentiment_classifier_score
+Fri Feb 15 16:19:06 +0000 2019,134062631,"@LHONrussell Congrats, Russell!",en,None,None,None,1a27537478dd8e38,None,ES,0,0,rob,41.3851,2.1734,3,NEG,0.258
+Thu Feb 14 16:42:39 +0000 2019,598149193,@irtacat @RocGramona @ClinomicsLife https://t.co/rgtAryX3Jk,und,None,None,None,1a27537478dd8e38,None,ES,1,2,rob,41.3851,2.1734,3,NEG,0.357
+Thu Feb 14 16:41:51 +0000 2019,598149193,Magnifica feina de l'IRTA col.laborant amb l'Escola de Poda en la Jornada d'Espiells. Gracies Jordi i Feli,ca,None,None,None,1a27537478dd8e38,None,ES,0,4,rob,41.3851,2.1734,3,POS,0.966
+Mon Feb 11 23:17:10 +0000 2019,488018717,10 different mfs gon try to rob me when I get back to Chicago next week,en,None,None,None,1a27537478dd8e38,None,ES,1,2,rob,41.3851,2.1734,3,NEG,0.117
+Mon Feb 11 18:18:48 +0000 2019,3412248832,@H2BCN Thanks for sharing Rob!,en,None,None,None,1a27537478dd8e38,None,ES,0,0,rob,41.3851,2.1734,3,NEG,0.249
+Fri Feb 15 16:19:06 +0000 2019,134062631,"@LHONrussell Congrats, Russell!",en,None,None,None,1a27537478dd8e38,None,ES,0,0,rob,41.3851,2.1734,3,NEG,0.258
+Thu Feb 14 16:42:39 +0000 2019,598149193,@irtacat @RocGramona @ClinomicsLife https://t.co/rgtAryX3Jk,und,None,None,None,1a27537478dd8e38,None,ES,1,2,rob,41.3851,2.1734,3,NEG,0.357
+Thu Feb 14 16:41:51 +0000 2019,598149193,Magnifica feina de l'IRTA col.laborant amb l'Escola de Poda en la Jornada d'Espiells. Gracies Jordi i Feli,ca,None,None,None,1a27537478dd8e38,None,ES,0,4,rob,41.3851,2.1734,3,POS,0.966
+Mon Feb 11 23:17:10 +0000 2019,488018717,10 different mfs gon try to rob me when I get back to Chicago next week,en,None,None,None,1a27537478dd8e38,None,ES,1,2,rob,41.3851,2.1734,3,NEG,0.117
+Mon Feb 11 18:18:48 +0000 2019,3412248832,@H2BCN Thanks for sharing Rob!,en,None,None,None,1a27537478dd8e38,None,ES,0,0,rob,41.3851,2.1734,3,NEG,0.249

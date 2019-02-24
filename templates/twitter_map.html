@@ -1,0 +1,266 @@
+<html>
+<head>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <!--<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet'/>-->
+    <!--<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.css' rel='stylesheet'/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+
+    let _GeoJSONCircle = function (center, radiusInKm, points) {
+        if (!points) points = 64;
+
+        let coords = {
+            latitude: center[1],
+            longitude: center[0]
+        };
+
+        let km = radiusInKm;
+
+        let ret = [];
+        let distanceX = km / (111.320 * Math.cos(coords.latitude * Math.PI / 180));
+        let distanceY = km / 110.574;
+
+        let theta, x, y;
+        for (let i = 0; i < points; i++) {
+            theta = (i / points) * (2 * Math.PI);
+            x = distanceX * Math.cos(theta);
+            y = distanceY * Math.sin(theta);
+
+            ret.push([coords.longitude + x, coords.latitude + y]);
+        }
+        ret.push(ret[0]);
+
+        return [ret]
+    };
+
+    mapboxgl.accessToken = '{{ACCESS_KEY}}';
+
+    let $_tweets_without_locations = {{_tweets_without_locations|safe}};
+    let $_search_locations = {{_search_locations|safe}};
+
+
+    let map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v9',
+        center: ['{{center_lon}}', '{{center_lat}}'],
+        zoom: '{{map_zoom}}'
+    });
+
+
+    let _tweets_without_locations = {
+        "type": "FeatureCollection",
+        "features": $_tweets_without_locations.map(function (data_point) {
+            return {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": _GeoJSONCircle(data_point.geometry.coordinates, data_point.properties.diameter, 32)
+                }
+            };
+
+        })
+    };
+
+    let _search_locations_NEG = {
+        "type": "FeatureCollection",
+        "features": $_search_locations.map(function (data_point) {
+
+            let _slice_counter = data_point.properties.nor_counter_NEG;
+            let _data;
+            let data;
+            if (_slice_counter > 0) {
+                _data = _GeoJSONCircle(data_point.geometry.coordinates, 0.3, 100);
+                _data = _data[0].slice(0, _slice_counter);
+                _data.push(data_point.geometry.coordinates);
+                data = [_data];
+            } else {
+                data = _GeoJSONCircle(data_point.geometry.coordinates, 0, 1)
+            }
+
+            return {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": data
+                }
+            };
+
+        })
+
+    };
+
+    let _search_locations_POS = {
+        "type": "FeatureCollection",
+        "features": $_search_locations.map(function (data_point) {
+
+            let _slice_counter = data_point.properties.nor_counter_NEG;
+            let _data;
+            let data;
+            if (_slice_counter > 0) {
+                _data = _GeoJSONCircle(data_point.geometry.coordinates, 0.3, 100);
+                _data = _data[0].slice(_slice_counter - 1, _data[0].length);
+                _data.push(data_point.geometry.coordinates);
+                data = [_data];
+            } else {
+                data = _GeoJSONCircle(data_point.geometry.coordinates, 0, 1)
+            }
+
+            return {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": data
+                }
+            };
+
+        })
+    };
+
+
+    let _search_locations_NEU = {
+        "type": "FeatureCollection",
+        "features": $_search_locations.map(function (data_point) {
+
+            let _slice_counter = data_point.properties.nor_counter_NEG;
+            let data;
+            if (_slice_counter > 0) {
+                data = _GeoJSONCircle(data_point.geometry.coordinates, 0, 1)
+            } else {
+                data = _GeoJSONCircle(data_point.geometry.coordinates, 0.05, 32)
+            }
+            return {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": data
+                }
+            };
+
+        })
+    };
+
+    let _search_locations = {
+        "type": "FeatureCollection",
+        "features": $_search_locations.map(function (data_point) {
+
+            return {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": data_point.geometry.coordinates
+                },
+                properties: {
+                    title: data_point.properties.title,
+                    description: 'Transportation'
+                }
+            };
+
+        })
+    };
+
+    map.on('load', function () {
+            {#            map.addSource("_tweets_without_locations", {
+                            "type": "geojson",
+                            "data": _tweets_without_locations
+                        });#}
+
+            {#            map.addLayer({
+                            "id": "_tweets_with_locations",
+                            "type": "fill",
+                            "source": "_tweets_without_locations",
+                            'layout': {},
+                            'paint': {
+                                'fill-color': '#088',
+                                'fill-opacity': 1
+                            },
+                            "filter": ["==", "$type", "Polygon"]
+                        });#}
+            map.addSource("_search_locations_POS", {
+                "type": "geojson",
+                "data": _search_locations_POS
+            });
+
+            map.addLayer({
+                "id": "_search_locations_POS",
+                "type": "fill",
+                "source": "_search_locations_POS",
+                'layout': {},
+                'paint': {
+                    'fill-color': '#00FF00',
+                    'fill-opacity': 0.7
+                },
+                "filter": ["==", "$type", "Polygon"]
+            });
+
+            map.addSource("_search_locations_NEG", {
+                "type": "geojson",
+                "data": _search_locations_NEG
+            });
+
+            map.addLayer({
+                "id": "_search_locations_NEG",
+                "type": "fill",
+                "source": "_search_locations_NEG",
+                'layout': {},
+                'paint': {
+                    'fill-color': '#FF0000',
+                    'fill-opacity': 0.7
+                },
+                "filter": ["==", "$type", "Polygon"]
+            });
+
+            map.addSource("_search_locations_NEU", {
+                "type": "geojson",
+                "data": _search_locations_NEU
+            });
+
+            map.addLayer({
+                "id": "_search_locations_NEU",
+                "type": "fill",
+                "source": "_search_locations_NEU",
+                'layout': {},
+                'paint': {
+                    'fill-color': '#ffc800',
+                    'fill-opacity': 1
+                },
+                "filter": ["==", "$type", "Polygon"]
+            });
+
+            map.addSource("_search_locations", {
+                "type": "geojson",
+                "data": _search_locations
+            });
+
+            map.addLayer({
+                "id": "_search_locations",
+                "type": "symbol",
+                "source": "_search_locations",
+                "layout": {
+                    "icon-image": "rail-metro-15",
+                    "icon-size": 1,
+                }
+            });
+        }
+    );
+
+</script>
+</body>
+</html>

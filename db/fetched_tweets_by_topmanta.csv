@@ -1,0 +1,3 @@
+id,created_at,text,lang,coordinates_type,coordinates_lat,coordinates_lon,place_id,place_name,place_country_code,retweet_count,favorite_count,_search_string,_search_loc_lat,_search_loc_lon,_search_loc_range,label,sentiment_classifier_score
+Thu Feb 14 06:18:52 +0000 2019,835665849667158016,Hablando de irresponsables @AdaColau que dirias de una alcaldesa que permite el topmanta en perjuicio del comercio� https://t.co/X3JzJ53FZe,es,None,None,None,1a27537478dd8e38,None,ES,0,1,topmanta,41.3851,2.1734,3,NEG,0.005
+Wed Feb 13 13:30:35 +0000 2019,79472256,"No hay chivatazos a los vendedores del #topmanta en #Barcelona, asegura Amadeu Recasens, comisionado de Seguridad d� https://t.co/rW88sBnZJu",es,None,None,None,1a27537478dd8e38,None,ES,1,1,topmanta,41.3851,2.1734,3,POS,0.654

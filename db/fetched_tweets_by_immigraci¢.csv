@@ -1,0 +1,2 @@
+id,created_at,text,lang,coordinates_type,coordinates_lat,coordinates_lon,place_id,place_name,place_country_code,retweet_count,favorite_count,_search_string,_search_loc_lat,_search_loc_lon,_search_loc_range,label,sentiment_classifier_score
+Mon Feb 18 20:18:20 +0000 2019,370614772,Per si �s del vostre inter�s. - https://t.co/Bpt6cH9Exz,ca,None,None,None,1a27537478dd8e38,None,ES,12,28,immigraci�,41.3851,2.1734,3,NEG,0.05
