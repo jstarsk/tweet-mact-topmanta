@@ -208,9 +208,14 @@ if __name__ == "__main__":
 
     interest_point = pd.read_csv("%s/db_input/Transports.csv" % (os.getcwd()))
 
-    search_topics = ["#TransportPublic", "#Catalonia", "#FreeToThom", "#NoSurrender", "#CataloniaRepublic",
-                     "#Makeamove", "#WakeUpEurope", "bcitnews", "#freedomcatalonia", "#TMB_Barcelona",
-                     "#metrobarcelona", "#ConstrumatBCN"]
+    search_topics = ["bcn", "barcelona", "@policia", "#topmanta", "#lesglories", "#brocanters", "#TopManta",
+                     "@AdaColau", "@mossos", "@barcelona_GUB", "#seguridad ", "@sindicatomanter", "#TOPMANTA",
+                     "#Crowdfunding", "#Espaicontrabandand","robar", "#pickpocket", "#thieves","Lamine Bathily"
+                     "#DefendiendoAMaleno", "@openarms_fund", "#FreeOpenArms", "#MigrantesEnLucha","Venedors Ambulants"
+                     "#DefensemCasaAfrica", "#SobrevivirNoEsDelito", "#PerseguidBanquerosNoManteros","Sindicat Popular de Venedors Ambulants",
+                     "#DiaInternacionalDelMigrante ", "#JusticiaRacista","@AirportBCN_Info", "immigració","manta", "#EsRacismo",
+                     "@@esracismosos", "#PararÉsRacista","#RacismoInstitucional","#RacismeInstitucional","La Rambla.", "thieves "
+                     "@sindicatomanter", " les migracions", "Vendedores Ambulante", "@TrasLaManta", "#LamineBathily"]
 
     print("--------------------------------------------------------------------------")
     print("Twitter - DATABASE")
